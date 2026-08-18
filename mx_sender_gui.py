@@ -7,7 +7,7 @@ MX Direct 图形界面发送软件
 
 功能:
 - 服务器地址 / Token / 连接测试 / 配置自动保存
-- 发件箱导入 (每行: 邮箱 或 邮箱|HELO域名|IP)
+- 发件箱随机生成 (5-7 位小写字母 @ 发件域名, 无需导入)
 - 收件人导入 (TXT 每行一个邮箱)
 - 主题 + 正文 (纯文本 / HTML 富文本, 可浏览器预览)
 - 高级参数 (HELO域名/伪装IP/SMTP ID/by_mx/并发/间隔, 留空=服务器随机)
@@ -21,6 +21,7 @@ MX Direct 图形界面发送软件
 """
 import ctypes
 import json
+import random
 import os
 import queue
 import sys
@@ -49,6 +50,8 @@ CONFIG_PATH = os.path.join(BASE_DIR, "mx_sender_gui_config.json")
 DEFAULT_CONFIG = {
     "server": "http://23.94.63.137:8088",
     "token": "",
+    "sender_domain": "codexses.com",
+    "sender_count": 100,
     "subject": "",
     "body": "",
     "html": False,
@@ -187,8 +190,18 @@ class MXSenderApp(tk.Tk):
         mid.pack(fill="x", **pad)
         mid.columnconfigure(0, weight=1)
         mid.columnconfigure(1, weight=1)
-        card_s = self._card(mid, "发件箱  (每行: 邮箱 或 邮箱|HELO域名|IP)")
+        card_s = self._card(mid, "发件箱  (随机 5-7 位字母 @ 发件域名, 无需导入)")
         card_s.grid(row=0, column=0, sticky="nsew", padx=(0, 4))
+        r0 = tk.Frame(card_s, bg=UI_CARD)
+        r0.pack(fill="x", padx=8, pady=(6, 0))
+        tk.Label(r0, text="发件域名", bg=UI_CARD, font=UI_FONT).pack(side="left")
+        self.var_sender_domain = tk.StringVar()
+        tk.Entry(r0, textvariable=self.var_sender_domain, font=UI_FONT, width=24,
+                 relief="solid", bd=1).pack(side="left", padx=4)
+        tk.Label(r0, text="数量", bg=UI_CARD, font=UI_FONT).pack(side="left", padx=(10, 0))
+        self.var_sender_count = tk.StringVar()
+        tk.Entry(r0, textvariable=self.var_sender_count, font=UI_FONT, width=6,
+                 relief="solid", bd=1).pack(side="left", padx=4)
         self.txt_senders = tk.Text(card_s, height=7, relief="solid", bd=1,
                                    font=("Consolas", 10), bg="#fbfdff")
         self.txt_senders.pack(fill="both", expand=True, padx=8, pady=4)
@@ -196,8 +209,8 @@ class MXSenderApp(tk.Tk):
         r1.pack(fill="x", padx=8, pady=(0, 6))
         self.lbl_sender_cnt = tk.Label(r1, text="0 个", bg=UI_CARD, fg="gray", font=UI_FONT)
         self.lbl_sender_cnt.pack(side="left")
-        tk.Button(r1, text="导入发件箱", font=UI_FONT, bg=UI_SECONDARY, relief="solid",
-                  bd=1, cursor="hand2", command=lambda: self._import_to(self.txt_senders)).pack(side="right", padx=2)
+        tk.Button(r1, text="随机生成", font=UI_FONT, bg=UI_SECONDARY, relief="solid",
+                  bd=1, cursor="hand2", command=self._gen_senders).pack(side="right", padx=2)
         tk.Button(r1, text="清空", font=UI_FONT, bg="#fdecef", fg=UI_DANGER, relief="solid",
                   bd=1, cursor="hand2", command=lambda: self._clear_text(self.txt_senders)).pack(side="right", padx=2)
 
@@ -327,6 +340,31 @@ class MXSenderApp(tk.Tk):
         self._update_cnt()
         self.log("已导入 %d 行: %s" % (len(lines), os.path.basename(path)))
 
+    def _gen_senders(self, auto=False):
+        domain = self.var_sender_domain.get().strip().lstrip("@")
+        if not domain:
+            if auto:
+                return
+            messagebox.showwarning("提示", "请先填写发件域名")
+            return
+        try:
+            count = max(1, int(self.var_sender_count.get() or 100))
+        except ValueError:
+            count = 100
+        seen = set()
+        out = []
+        while len(out) < count:
+            n = random.randint(5, 7)
+            addr = "".join(random.choice("abcdefghijklmnopqrstuvwxyz") for _ in range(n))
+            if addr in seen:
+                continue
+            seen.add(addr)
+            out.append(addr + "@" + domain)
+        self.txt_senders.delete("1.0", "end")
+        self.txt_senders.insert("1.0", "\n".join(out) + "\n")
+        self._update_cnt()
+        self.log("%s生成 %d 个随机发件箱: 5-7位字母@%s" % ("自动" if auto else "已", count, domain))
+
     def _update_cnt(self):
         s = self._parse_senders()
         r = self._parse_receivers()
@@ -370,6 +408,8 @@ class MXSenderApp(tk.Tk):
             "by_mx": self.var_bymx.get().strip(),
             "threads": int(self.var_threads.get() or 10),
             "delay": float(self.var_delay.get() or 0),
+            "sender_domain": self.var_sender_domain.get().strip().lstrip("@"),
+            "sender_count": int(self.var_sender_count.get() or 100),
         }
         return cfg
 
@@ -390,7 +430,11 @@ class MXSenderApp(tk.Tk):
         self.var_bymx.set(c.get("by_mx", ""))
         self.var_threads.set(str(c.get("threads", 10)))
         self.var_delay.set(str(c.get("delay", 0)))
+        self.var_sender_domain.set(c.get("sender_domain", "codexses.com"))
+        self.var_sender_count.set(str(c.get("sender_count", 100)))
         self._update_cnt()
+        if not self._parse_senders():
+            self._gen_senders(auto=True)
 
     def _on_close(self):
         self._save_cfg()
