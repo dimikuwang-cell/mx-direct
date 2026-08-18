@@ -1,0 +1,6 @@
+# MX Direct 发件箱示例 (每行一个, # 开头为注释)
+# 格式1: 邮箱
+sender1@codexses.com
+sender2@codexses.com
+# 格式2: 邮箱|HELO域名|IP   (HELO域名=随机域名, IP=注入头显示的IP)
+sender3@codexses.com|mail.xzses.com|8.8.8.8

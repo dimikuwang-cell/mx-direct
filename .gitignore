@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+build/
+dist/
+mx_direct_config.json
+dkim.private.key
+*.log
+_preview.html
+发送结果_*.csv
+haraka_bundle.tar.gz
+*.spec
