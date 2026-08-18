@@ -334,7 +334,7 @@ def deliver(mxs, from_addr, to, msg, helo, timeout):
             log("直投 %s -> %s (EHLO=%s)" % (from_addr, host, helo))
             smtp = smtplib.SMTP(host, 25, timeout=timeout, local_hostname=helo)
             smtp.ehlo(helo)
-            smtp.sendmail(from_addr, [to], msg)
+            smtp.sendmail(from_addr, [to], msg.encode("utf-8"))
             smtp.quit()
             return True, host
         except Exception as e:
