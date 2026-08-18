@@ -518,7 +518,8 @@ class MXSenderApp(tk.Tk):
                 "smtp_id": cfg["smtp_id"],
                 "by_mx": cfg["by_mx"],
             }
-            code, resp = http_json(cfg["server"].rstrip("/") + "/api/send", payload=payload, timeout=60)
+            code, resp = http_json(cfg["server"].rstrip("/") + "/api/send", payload=payload,
+                              headers={"Authorization": "Bearer " + cfg["token"]}, timeout=60)
             ok = bool(resp.get("ok"))
             info = resp.get("error") or resp.get("mx") or ""
             return ok, to, sender["email"], info
