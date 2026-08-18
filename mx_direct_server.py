@@ -327,13 +327,37 @@ def build_message(req):
     return msg, helo, fake_ip, smtp_id, by_mx
 
 
+def _smtp_connect_v4(host, port, timeout, helo):
+    """IPv4 优先直连 MX: 避免 IPv6 路由缺失导致的 Network unreachable 误导错误"""
+    import socket
+    addrs = []
+    try:
+        infos = socket.getaddrinfo(host, port, socket.AF_INET, socket.SOCK_STREAM)
+        for _af, _st, _pr, _cn, sa in infos:
+            if sa[0] not in addrs:
+                addrs.append(sa[0])
+    except Exception as e:
+        raise e
+    last = None
+    for ip in addrs:
+        try:
+            smtp = smtplib.SMTP(ip, port, timeout=timeout, local_hostname=helo)
+            smtp.ehlo(helo)
+            return smtp
+        except Exception as e:
+            last = e
+            continue
+    if last is not None:
+        raise last
+    raise Exception("MX %s 无可用 IPv4 地址" % host)
+
+
 def deliver(mxs, from_addr, to, msg, helo, timeout):
     last_err = ""
     for _prio, host in mxs:
         try:
             log("直投 %s -> %s (EHLO=%s)" % (from_addr, host, helo))
-            smtp = smtplib.SMTP(host, 25, timeout=timeout, local_hostname=helo)
-            smtp.ehlo(helo)
+            smtp = _smtp_connect_v4(host, 25, timeout, helo)
             smtp.sendmail(from_addr, [to], msg.encode("utf-8"))
             smtp.quit()
             return True, host
