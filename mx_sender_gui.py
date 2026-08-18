@@ -47,6 +47,24 @@ else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(BASE_DIR, "mx_sender_gui_config.json")
 
+CN_LAST = "赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍虞万支柯昝管卢莫经房裘缪干解应宗丁宣贲邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄曲家封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘斜厉戎祖武符刘景詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲邰从鄂索咸籍赖卓蔺屠蒙池乔阴郁胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍却璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庾终暨居衡步都耿满弘匡国文寇广禄阙东欧殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后荆红游竺权逯盖益桓公"
+CN_GIVEN = "伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘秀娟英华慧巧美娜静淑惠珠翠雅芝玉萍红娥玲芬芳燕彩春菊兰凤洁梅琳素云莲真环雪荣爱妹霞香月莺媛艳瑞凡佳嘉琼勤珍贞莉桂娣叶璧璐娅琦晶妍茜秋珊莎锦黛青倩婷姣婉娴瑾颖露瑶怡婵雁蓓纨仪荷丹蓉眉君琴蕊薇菁梦岚苑婕馨瑗琰韵融园艺咏卿聪澜纯毓悦昭冰爽琬茗羽希欣飘育滢馥筠柔竹霭凝晓欢霄枫芸菲寒伊亚宜可姬舒影荔枝思丽"
+JP_LAST = ["佐藤","鈴木","高橋","田中","伊藤","渡辺","山本","中村","小林","加藤","吉田","山田","佐々木","山口","松本","井上","木村","林","斎藤","清水","山崎","森","池田","橋本","阿部","石川","中島","前田","藤田","小川","岡田","後藤","長谷川","村上","近藤","石井","遠藤","青木","藤井","西村","福田","太田","三浦","岡本","松田","中川","中野","原田","小野","田村","竹内","金子","和田","中山","石田","上田","森田","柴田","原","宮崎","酒井","工藤","横山","宮本","内田","高木","安藤","島田","谷口","大野","高田","丸山","今井","河野","藤原","高野","小山","武田","西田","大橋","坂本","滝口","小池","野村"]
+JP_GIVEN = ["悠真","美咲","大翔","結衣","蓮","陽菜","湊","葵","凛","健太","翔太","千尋","真理子","直樹","拓海","颯太","蒼太","奏多","玲奈","愛","光","優","陽向","結愛","澪","ひかり","ゆうた","そうま","はると","さくら","ゆい","あかり","まお","りく","かいと","ゆうと","はるか","みなみ","かのん","つむぎ","いちか","こはる","みお","すず","りお","あおい","めい","ひまり","さな","もも","うた","ねね","ほのか","しおり","ゆず","あんず","つばさ","あさひ","だいち","ひびき","ゆづき","ふうか","みこと","あゆむ","はやと","きょうか","みゆき","まさる","たけし","ひろし","けんじ","よしこ","ともこ","あきら","まこと","はじめ","のぼる","おさむ","さとし","ひでお","なおこ","けいこ","じゅん","まなみ","りな","えま","みく"]
+EN_FIRST = ["James","John","Robert","Michael","William","David","Richard","Joseph","Thomas","Charles","Christopher","Daniel","Matthew","Anthony","Mark","Donald","Steven","Paul","Andrew","Joshua","Kenneth","Kevin","Brian","George","Edward","Ronald","Timothy","Jason","Jeffrey","Ryan","Jacob","Gary","Nicholas","Eric","Jonathan","Stephen","Larry","Justin","Scott","Brandon","Benjamin","Samuel","Gregory","Alexander","Patrick","Frank","Raymond","Jack","Dennis","Jerry","Tyler","Aaron","Jose","Adam","Nathan","Henry","Zachary","Douglas","Peter","Kyle","Noah","Ethan","Jeremy","Walter","Christian","Keith","Roger","Terry","Austin","Sean","Gerald","Carl","Dylan","Harold","Jordan","Jesse","Bryan","Lawrence","Arthur","Gabriel","Bruce","Logan","Billy","Joe","Alan","Juan","Elijah","Willie","Albert","Wayne","Randy","Mason","Vincent","Liam","Roy","Bobby","Caleb","Bradley","Russell","Lucas","Mary","Patricia","Jennifer","Linda","Elizabeth","Barbara","Susan","Jessica","Sarah","Karen","Lisa","Nancy","Betty","Margaret","Sandra","Ashley","Kimberly","Emily","Donna","Michelle","Carol","Amanda","Dorothy","Melissa","Deborah","Stephanie","Rebecca","Sharon","Laura","Cynthia","Kathleen","Amy","Angela","Shirley","Anna","Brenda","Pamela","Emma","Nicole","Helen","Samantha","Katherine","Christine","Debra","Rachel","Carolyn","Janet","Catherine","Maria","Heather","Diane","Ruth","Julie","Olivia","Joyce","Virginia","Victoria","Kelly","Lauren","Christina","Joan","Evelyn","Judith","Megan","Cheryl","Andrea","Hannah","Jacqueline","Martha","Gloria","Teresa","Ann","Sara","Madison","Frances","Kathryn","Janice","Jean","Abigail","Alice","Julia","Judy","Sophia","Grace","Denise","Amber","Doris","Marilyn","Danielle","Beverly","Isabella","Theresa","Diana","Natalie","Brittany","Charlotte","Marie","Kayla","Alexis","Lori","Christina"]
+EN_LAST = ["Smith","Johnson","Williams","Brown","Jones","Garcia","Miller","Davis","Rodriguez","Martinez","Hernandez","Lopez","Gonzalez","Wilson","Anderson","Thomas","Taylor","Moore","Jackson","Martin","Lee","Perez","Thompson","White","Harris","Sanchez","Clark","Ramirez","Lewis","Robinson","Walker","Young","Allen","King","Wright","Scott","Torres","Nguyen","Hill","Flores","Green","Adams","Nelson","Baker","Hall","Rivera","Campbell","Mitchell","Carter","Roberts","Gomez","Phillips","Evans","Turner","Diaz","Parker","Cruz","Edwards","Collins","Reyes","Stewart","Morris","Morales","Murphy","Cook","Rogers","Gutierrez","Ortiz","Morgan","Cooper","Peterson","Bailey","Reed","Kelly","Howard","Ramos","Kim","Cox","Ward","Richardson","Watson","Brooks","Chavez","Wood","James","Bennett","Gray","Mendoza","Ruiz","Hughes","Price","Alvarez","Castillo","Sanders","Patel","Myers","Long","Ross","Foster","Jimenez","Powell","Jenkins","Perry","Russell","Sullivan","Bell","Coleman","Butler","Henderson","Barnes","Gonzales","Fisher","Vasquez","Simmons","Romero","Jordan","Patterson","Alexander","Hamilton","Graham","Reynolds","Griffin","Wallace","Moreno","West","Cole","Hayes","Bryant","Herrera","Gibson","Ellis","Tran","Medina","Aguilar","Stevens","Murray","Ford","Castro","Marshall","Owens","Harrison","Fernandez","Mcdonald","Woods","Washington","Kennedy","Wells","Vargas","Henry","Chen","Freeman","Webb","Tucker","Guzman","Burns","Crawford","Olson","Simpson","Porter","Hunter","Gordon","Mendez","Silva","Shaw","Snyder","Mason","Dixon","Munoz","Hunt","Hicks","Holmes","Palmer","Wagner","Black","Robertson","Boyd","Rose","Stone","Salazar","Fox","Warren","Mills","Meyer","Rice","Schmidt","Garza","Daniels","Ferguson","Nichols","Stephens","Soto","Weaver","Ryan","Gardner","Payne","Grant","Dunn","Kelley","Spencer","Hawkins","Arnold","Pierce","Vazquez","Hansen","Peters","Santos","Hart","Bradley","Knight","Elliott","Cunningham","Duncan","Armstrong","Hudson","Carroll","Lane","Riley","Andrews","Alvarado","Ray","Delgado","Berry","Perkins","Hoffman","Johnston","Matthews","Pena","Richards","Contreras","Willis","Carpenter","Lawrence","Sandoval","Guerrero","George","Chapman","Rios","Estrada","Ortega","Watkins","Greene","Nunez","Wheeler","Valdez","Larsen","Phelps","Calderon","Hale","Mack","Zimmerman","Barker","Bowman","Hodges","Powers","Schneider","Newman","Oliver","Curtis","Lucas","Luna","Burton","Maldonado","Salinas","Osborne","Bush","French","Nguyen","Kumar","Sharma","Singh","Patel"]
+
+
+def random_name(mode):
+    """按模式生成随机显示名: 固定/随机中文/随机日文/随机英文"""
+    if mode == "随机中文":
+        g = CN_GIVEN
+        return random.choice(CN_LAST) + random.choice(g) + (random.choice(g) if random.random() < 0.5 else "")
+    if mode == "随机日文":
+        return random.choice(JP_LAST) + " " + random.choice(JP_GIVEN)
+    if mode == "随机英文":
+        return random.choice(EN_FIRST) + " " + random.choice(EN_LAST)
+    return ""
 DEFAULT_CONFIG = {
     "server": "http://23.94.63.137:8088",
     "token": "",
@@ -61,6 +79,8 @@ DEFAULT_CONFIG = {
     "by_mx": "",
     "threads": 10,
     "delay": 0.0,
+    "from_name": "",
+    "from_name_mode": "固定",
 }
 
 UI_BG = "#f5f7fb"
@@ -233,6 +253,19 @@ class MXSenderApp(tk.Tk):
         card_c.pack(fill="x", **pad)
         rowc = tk.Frame(card_c, bg=UI_CARD)
         rowc.pack(fill="x", padx=10, pady=4)
+        rowf = tk.Frame(card_c, bg=UI_CARD)
+        rowf.pack(fill="x", padx=10, pady=(0, 4))
+        tk.Label(rowf, text="发件人名称", bg=UI_CARD, font=UI_FONT).pack(side="left")
+        self.var_from_name = tk.StringVar()
+        tk.Entry(rowf, textvariable=self.var_from_name, font=UI_FONT, width=20,
+                 relief="solid", bd=1).pack(side="left", padx=6)
+        tk.Label(rowf, text="随机模式", bg=UI_CARD, font=UI_FONT).pack(side="left", padx=(10, 0))
+        self.var_from_mode = tk.StringVar(value="固定")
+        ttk.Combobox(rowf, textvariable=self.var_from_mode, state="readonly",
+                     values=["固定", "随机中文", "随机日文", "随机英文"],
+                     width=10, font=UI_FONT).pack(side="left", padx=6)
+        tk.Label(rowf, text="名称留空时自动使用发件箱前缀", bg=UI_CARD, fg="gray",
+                 font=("Microsoft YaHei UI", 8)).pack(side="left")
         tk.Label(rowc, text="主题", bg=UI_CARD, font=UI_FONT).pack(side="left")
         self.var_subject = tk.StringVar()
         tk.Entry(rowc, textvariable=self.var_subject, font=UI_FONT, relief="solid",
@@ -402,6 +435,8 @@ class MXSenderApp(tk.Tk):
             "subject": self.var_subject.get().strip(),
             "body": self.txt_body.get("1.0", "end-1c"),
             "html": bool(self.var_html.get()),
+            "from_name": self.var_from_name.get().strip(),
+            "from_name_mode": self.var_from_mode.get() or "固定",
             "helo_domain": self.var_helo.get().strip(),
             "fake_ip": self.var_ip.get().strip(),
             "smtp_id": self.var_smtp.get().strip(),
@@ -424,6 +459,8 @@ class MXSenderApp(tk.Tk):
         self.var_subject.set(c.get("subject", ""))
         self.txt_body.insert("1.0", c.get("body", ""))
         self.var_html.set(bool(c.get("html")))
+        self.var_from_name.set(c.get("from_name", ""))
+        self.var_from_mode.set(c.get("from_name_mode", "固定"))
         self.var_helo.set(c.get("helo_domain", ""))
         self.var_ip.set(c.get("fake_ip", ""))
         self.var_smtp.set(c.get("smtp_id", ""))
@@ -506,10 +543,13 @@ class MXSenderApp(tk.Tk):
             sender = senders[i % len(senders)]
             if cfg["delay"] > 0:
                 time.sleep(cfg["delay"])
+            fname = random_name(cfg.get("from_name_mode", "固定"))
+            if not fname:
+                fname = cfg.get("from_name", "") or sender["email"].split("@")[0]
             payload = {
                 "to": to,
                 "from_addr": sender["email"],
-                "from_name": sender["email"].split("@")[0],
+                "from_name": fname,
                 "subject": cfg["subject"],
                 "body": cfg["body"],
                 "html": cfg["html"],
